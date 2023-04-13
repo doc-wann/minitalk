@@ -17,24 +17,20 @@ OBJS_SR		= $(FILES_CLIENT:.c=.o)
 
 all:
 
-server: $(NAME_SERVER)
+server:
+	gcc -o server ./src/server.c ./src/cl_*.c ./src/bt_*.c
 
-$(NAME_SERVER): $(OBJS_SR)
-	cc $(FLAGS) -o $(NAME_SERVER) $(OBJS_SR)
+client:
+	gcc -o client ./src/client.c ./src/cl_*.c ./src/bt_*.c
+	
+server_bonus:
+	gcc -o server_bonus ./src/server.c ./src/cl_*.c ./src/bt_*.c
 
-$(OBJS): $(SRCS) ./src/libft.h
-	cc $(FLAGS) -c $(SRCS_SR)
-
-client: $(NAME_CLIENT)
-
-$(NAME_CLIENT): $(OBJS_CL)
-	cc $(FLAGS) -o $(NAME_CLIENT) $(OBJS_CL)
-
-$(OBJS_CL): $(SRCS_CL) ./src/libft.h
-	cc $(FLAGS) -c $(SRCS_CL)
+client_bonus:
+	gcc -o client_bonus ./src/client.c ./src/cl_*.c ./src/bt_*.c
 
 clean:
-	rm -rf $(OBJS) $(OBJS_BONUS) 
+	rm -rf $(OBJS_CL) $(OBJS_SR) 
 
 fclean:	clean
 	rm -rf $(NAME) 
