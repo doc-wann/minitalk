@@ -2,6 +2,7 @@
 #include <signal.h>
 
 #include <stdio.h>
+//MUST REMOVE STDIO!!
 
 int g_bit;
 
@@ -12,6 +13,7 @@ void	received(int sig)
 	{
 		g_bit++;
 		printf("bit sent! bit number = %i\n", g_bit);
+		//this CAN BE commented; is nothing but a more precise iteration of the sigusr2 call;
 	}
 	else if (sig == SIGUSR2)
 	{
@@ -57,6 +59,8 @@ void sendbit(pid_t pid, char *message)
 			{
 				// printf("\n%i/%i - g_bit/bit_comp\n", g_bit, bit_comp);
 				usleep(500);
+				// usleep time can be reduced, but test are yet to be done. If my perception of how this code is working is right, the usleep might be set to values as low as 1. Still, this needs further testing;
+				// reducing the usleep time as stated above can potentially  make this the most eficient form of UNIX signal communication :) 
 			}
 			if ((message[i] >> shift_bits) & 0b00000001)
 				kill(pid, SIGUSR1);
