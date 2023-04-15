@@ -6,7 +6,7 @@
 /*   By: hdaniele <hdaniele@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 12:01:02 by hdaniele          #+#    #+#             */
-/*   Updated: 2023/04/15 12:04:50 by hdaniele         ###   ########.fr       */
+/*   Updated: 2023/04/15 12:21:26 by hdaniele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	received(int sig)
 	else if (sig == SIGUSR2)
 	{
 		g_bit++;
-		ft_printf("letter sent! letter number = %i", g_bit / 8);
+		ft_printf("letter sent! letter number = %i\n", g_bit / 8);
 	}
 	else
 	{
