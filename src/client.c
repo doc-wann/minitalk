@@ -1,31 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hdaniele <hdaniele@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/15 12:01:02 by hdaniele          #+#    #+#             */
+/*   Updated: 2023/04/15 12:04:50 by hdaniele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft.h"
 #include <signal.h>
 
-#include <stdio.h>
-
-int g_bit;
-
+int	g_bit;
 
 void	received(int sig)
 {
 	if (sig == SIGUSR1)
-	{
 		g_bit++;
-		printf("bit sent! bit number = %i\n", g_bit);
-	}
 	else if (sig == SIGUSR2)
 	{
 		g_bit++;
-		printf("letter sent! letter number = %i | bit = %i\n", g_bit/8, g_bit);
+		ft_printf("letter sent! letter number = %i", g_bit / 8);
 	}
 	else
 	{
-		write(22, "\tError: Invalid Signal", 1);
+		ft_printf("\tError: Invalid Signal");
 		exit(22);
 	}
 }
 
-int check_pid_digits(char *pid)
+int	check_pid_digits(char *pid)
 {
 	int	i;
 
@@ -40,10 +46,10 @@ int check_pid_digits(char *pid)
 	return (0);
 }
 
-void sendbit(pid_t pid, char *message)
+void	sendbit(pid_t pid, char *message)
 {
 	int	i;
-	int bit_comp;
+	int	bit_comp;
 	int	shift_bits;
 
 	bit_comp = 0;
@@ -54,10 +60,7 @@ void sendbit(pid_t pid, char *message)
 		while (shift_bits < 8)
 		{
 			while (g_bit != bit_comp)
-			{
-				// printf("\n%i/%i - g_bit/bit_comp\n", g_bit, bit_comp);
-				usleep(500);
-			}
+				usleep(1);
 			if ((message[i] >> shift_bits) & 0b00000001)
 				kill(pid, SIGUSR1);
 			else
@@ -69,10 +72,10 @@ void sendbit(pid_t pid, char *message)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	pid_t	pid;
-	
+
 	g_bit = 0;
 	signal(SIGUSR1, received);
 	signal(SIGUSR2, received);

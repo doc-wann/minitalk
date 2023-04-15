@@ -6,7 +6,7 @@
 /*   By: hdaniele <hdaniele@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 21:10:41 by hdaniele          #+#    #+#             */
-/*   Updated: 2023/04/06 17:28:52 by hdaniele         ###   ########.fr       */
+/*   Updated: 2023/04/15 12:05:55 by hdaniele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,14 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-//ft_printf:
-int	ft_printf(const char *format, ...);
-int	search(char format, va_list arg);
-int	ft_putnbr(int n);
-int	ft_putnbru(unsigned int n);
-int	ft_putstr(char *s);
-int	ft_putchar(char c);
-int	pointer(unsigned long ptr);
-int	dex(unsigned long decimalnum, int i, int cpyresult);
-int	dexs(unsigned long decimalnum, int i, int cpyresult);
+int		ft_printf(const char *format, ...);
+int		search(char format, va_list arg);
+int		ft_putnbr(int n);
+int		ft_putnbru(unsigned int n);
+int		ft_putstr(char *s);
+int		ft_putchar(char c);
+int		pointer(unsigned long ptr);
+int		dex(unsigned long decimalnum, int i, int cpyresult);
+int		dexs(unsigned long decimalnum, int i, int cpyresult);
 
 #endif
